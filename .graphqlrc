@@ -1,0 +1,28 @@
+{
+  "overwrite": true,
+  "schema": [
+    {
+      "https://local.hasura.nhost.run:8081/v1/graphql": {
+        "headers": {
+          "x-hasura-admin-secret": "nhost-admin-secret"
+        }
+      }
+    }
+  ],
+  "ignoreNoDocuments": true,
+  "documents": "./src/gql/**/*.graphql",
+  "generates": {
+    "src/gql/graphql.ts": {
+      "plugins": [
+        "typescript",
+        "typescript-operations",
+        "typescript-react-apollo"
+      ]
+    }
+  },
+  "hooks": {
+    "afterOneFileWrite": [
+      "prettier --write"
+    ]
+  }
+}
